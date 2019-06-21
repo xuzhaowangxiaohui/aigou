@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8848 #配置中心服务
+      label: master #分支
+      name: aigou-plat-provider #github上面名称
+      profile: dev #环境
+

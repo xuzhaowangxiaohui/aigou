@@ -1,0 +1,16 @@
+server:
+  port: 9001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:7001/eureka/
+    instance:
+        prefer-ip-address: true  #使用ip注册到注册中心
+spring:
+  application:
+    name: AIGOU_ZUUL
+zuul:
+  routes:
+    aigou_plat: /login/**
+  ignored-services: "*"
+  prefix: /aigou
