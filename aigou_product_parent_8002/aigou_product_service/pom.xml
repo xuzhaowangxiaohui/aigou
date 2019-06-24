@@ -3,17 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>aigou_plat_parent</artifactId>
+        <artifactId>aigou_product_parent_8002</artifactId>
         <groupId>com.xuzhao.aigou</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>aigou_plat_service_8001</artifactId>
+    <artifactId>aigou_product_service</artifactId>
     <dependencies>
+
         <dependency>
             <groupId>com.xuzhao.aigou</groupId>
-            <artifactId>aigou_plat_interface</artifactId>
+            <artifactId>aigou_product_interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -46,10 +47,11 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
-        <!--配置中心的客户端-->
+
+
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
 

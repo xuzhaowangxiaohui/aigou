@@ -12,5 +12,6 @@ spring:
 zuul:
   routes:
     aigou_plat: /login/**
+    aigou_product: /product/**
   ignored-services: "*"
   prefix: /aigou

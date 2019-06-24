@@ -12,6 +12,10 @@
     <artifactId>aigou_configserver_8848</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-context</artifactId>
+        </dependency>
 
         <!--公共依赖-->
         <dependency>

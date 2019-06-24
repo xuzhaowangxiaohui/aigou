@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuzhao.aigou.mapper.BrandMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xuzhao.aigou.domain.Brand">
+        <id column="id" property="id" />
+        <result column="createTime" property="createTime" />
+        <result column="updateTime" property="updateTime" />
+        <result column="name" property="name" />
+        <result column="englishName" property="englishName" />
+        <result column="firstLetter" property="firstLetter" />
+        <result column="description" property="description" />
+        <result column="product_type_id" property="productTypeId" />
+        <result column="sortIndex" property="sortIndex" />
+        <result column="logo" property="logo" />
+    </resultMap>
+    <resultMap id="BrandMap" type="com.xuzhao.aigou.domain.Brand">
+        <!--先封装id-->
+        <id column="id" property="id" />
+        <!--再封装非id-->
+        <!--先封装基本属性-->
+        <result column="createTime" property="createTime" />
+        <result column="updateTime" property="updateTime" />
+        <result column="name" property="name" />
+        <result column="englishName" property="englishName" />
+        <result column="firstLetter" property="firstLetter" />
+        <result column="description" property="description" />
+        <result column="product_type_id" property="productTypeId" />
+        <result column="sortIndex" property="sortIndex" />
+        <result column="logo" property="logo" />
+        <!--再封装关联属性：
+          private ProductType productType;
+        -->
+        <association property="productType" javaType="com.xuzhao.aigou.domain.ProductType">
+            <!--先封装id-->
+            <id column="tid" property="id" />
+            <!--再封装非id-->
+            <!--先封装基本属性-->
+            <result column="tname" property="name" />
+        </association>
+    </resultMap>
+
+    <!--long queryPageCount(BrandQuery brandQuery);-->
+    <select id="queryPageCount" parameterType="com.xuzhao.aigou.query.BrandQuery" resultType="long">
+        SELECT
+        count(*)
+        FROM
+        t_brand b
+        LEFT JOIN t_product_type t ON b.product_type_id = t.id
+        <include refid="whereSql"/>
+    </select>
+
+
+    <!--  List<Brand> queryPageList(BrandQuery brandQuery);-->
+    <select id="queryPageList" parameterType="BrandQuery" resultMap="BrandMap" >
+        SELECT
+        b.id,
+        b.createTime,
+        b.updateTime,
+        b.name,
+        b.englishName,
+        b.firstLetter,
+        b.description,
+        b.sortIndex,
+        b.logo,
+        t.id tid,
+        t.name tname
+        FROM
+        t_brand b
+        LEFT JOIN t_product_type t ON b.product_type_id = t.id
+        <include refid="whereSql"/>
+        limit #{start},#{rows}
+    </select>
+
+    <!--
+      oracle: CONCAT (CONCAT('%',#{keyword}'),'%')
+    -->
+    <sql id="whereSql">
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                b.name like CONCAT('%',#{keyword},'%')
+                or b.englishName like CONCAT('%',#{keyword},'%')
+                or b.description like CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </sql>
+</mapper>

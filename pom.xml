@@ -14,6 +14,7 @@
         <module>aigou_plat_parent</module>
         <module>aigou_zuul_parent_9001</module>
         <module>aigou_configserver_8848</module>
+        <module>aigou_product_parent_8002</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
